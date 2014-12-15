@@ -1,0 +1,30 @@
+{% extends "AssistMe/base.html" %}
+
+{% block references %}
+   {% load staticfiles %}
+   <!--When you load a custom tag or filter library, the tags/filters are only made available to the current template – not any parent or child templates along the template-inheritance path. We must load staticfiles whenever we want to use the static tag!-->
+{% endblock %}
+
+{% block content %}
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+	<div style="padding-left:50;" class="jumbotron">
+		<h1>{{discipline.name}}</h1>
+		<p class="text-success">Now: Choose a Major to Explore</p>
+	</div> 
+	
+	<div class="row">
+	{% if discipline %}
+	    {% for major in discipline.majors.all %}
+	    <div class="col-md-4 col-xs-12" >
+	    	<!--Added slice Built-in filter to major.name: Only a temp fix-->
+	    	<a href="{% url 'AssistMe:articulations' major.id %}" class="btn btn-default btn-lg btn-block">{{major.name|slice:":30"}}<p class="text-warning">{{major.university.abbrev}}</p></a>
+	    	<br/>
+	    </div>
+	    {% endfor %}
+	{% else %}
+	    <p>Fail</p>
+	{% endif %}
+	<div/>
+
+{% endblock %}
+

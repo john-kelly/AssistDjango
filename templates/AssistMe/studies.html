@@ -1,0 +1,30 @@
+{% extends "AssistMe/base.html" %}
+
+{% block references %}
+   {% load staticfiles %}
+   <!--When you load a custom tag or filter library, the tags/filters are only made available to the current template  – not any parent or child templates along the template-inheritance path. We must load staticfiles whenever we want to use the static tag!-->
+{% endblock %}
+
+{% block content %}
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+	<!--For that sexy grey-->
+	<div class="jumbotron">
+		<h1 style="padding-left:50;">AssistMe</h1>
+		<p class="text-success" style="padding-left:50;">Choose a Study to Explore</p>
+	</div> 
+	
+	<div class="row">
+	{% if studies %}
+	    {% for study in studies %}
+	    <div class="col-md-4 col-xs-12" >
+	    	<a style="padding-top:100;padding-bottom:100" href="{% url 'AssistMe:disciplines' study.id %}" class="btn btn-default btn-lg btn-block">{{study.name}}</a>
+	    	<br/>
+	    </div>
+	    {% endfor %}
+	{% else %}
+	    <p>Fail</p>
+	{% endif %}
+	</div>
+
+{% endblock %}
+

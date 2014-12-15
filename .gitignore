@@ -1,0 +1,6 @@
+/*.pyc
+/migrations/*
+/migrations/
+/tests.py
+/admin.py
+/__init__.py

@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <link href="{% static 'dist/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+  <!-- some css magic down here -->
+  <style>
+    body{padding:2em;} 
+    {% block style %}
+    
+    {% endblock %}
+  </style>
+  {% block references %}
+	<!--Other css shit here?-->
+	{% endblock %}
+  </head>
+
+  <body>
+  {% block content %}
+    <!--Other templates fill this-->
+	{% endblock %}
+
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+  </body>
+</html>
